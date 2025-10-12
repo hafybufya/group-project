@@ -40,5 +40,17 @@ UK_average.plot(kind='line',y='Average effective age of retirement, men (OECD)',
 #unhardcode numbers
 plot_retirement_men.set_title("Retirement Age Over Time - Men (1970-2018)")
 
+
+#plotting both UK men and women on the graph
+plot_retirement_women= UK_average.plot(kind='line',y='Average effective age of retirement, women (OECD)', label='Average effective age of retirement, women (UK)', color=OECD_color, linestyle='-')
+#ax = puts both lines on the same plot
+UK_average.plot(kind='line',y='Average effective age of retirement, men (OECD)', label="Average effective age of retirement, men (UK)" ,ax = plot_retirement_women, color=UK_color, linestyle='--')
+plot_retirement_women.set_title("Retirement Age Over Time - Men vs Women (1970-2018)")
+
+plt.axvline(x=2010, color='grey', linestyle='--', linewidth=1)
+plt.text(2010.5, 67, 'Equalisation of State Pension Age begins', rotation=90, va='bottom', color='grey')
+
 plt.style.use("seaborn-v0_8")
+
 plt.show()
+
