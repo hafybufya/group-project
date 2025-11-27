@@ -1,6 +1,18 @@
+# ---------------------------------------------------------------------
+# IMPORTED FUNCTIONS USED IN PROGRAM
+# ---------------------------------------------------------------------
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# ---------------------------------------------------------------------
+# Defined CSV file name, prompts and values used in program
+#  -> make the code flexible if used dataset changed
+#  -> or to reuse the same function for a different file.
+# ---------------------------------------------------------------------
+
+
+csv_in_use = "Retirement_Age.csv"
 # colors for plots
 colour_1 = "#2596be"
 colour_2 = "#ec9d41"
@@ -13,7 +25,7 @@ def read_retirement_data():
     reads Retirement_Age.csv file and parses the year column as a date and sets it as an index
     '''
     #GET RID OF HARDCODED PATH
-    retirement_df = pd.read_csv('GroupProject/Retirement_Age.csv', parse_dates=['Year'],  index_col='Year')
+    retirement_df = pd.read_csv(csv_in_use, parse_dates=['Year'],  index_col='Year')
 
     return  retirement_df
 
@@ -21,15 +33,13 @@ retirement_df =read_retirement_data()
 
 def min_max_index():
     """getting min max of index"""
-    df = pd.read_csv('GroupProject/Retirement_Age.csv')
+    df = pd.read_csv(csv_in_use)
     min_value = df['Year'].min()
     max_value = df['Year'].max()
     
     return min_value, max_value
 
-min_value, max_value = min_max_index()
-print(min_value)
-print(max_value)
+
 
 
 #mask to get OECD data 
@@ -69,6 +79,14 @@ def plot_men_women_graph():
 
 
 
-#Calling UK men vs UK women comparison graph
-plot_men_women_graph()
 
+
+# run program
+if __name__ == "__main__":
+
+    min_value, max_value = min_max_index()
+    print(min_value)
+    print(max_value)
+
+    #Calling UK men vs UK women comparison graph
+    plot_men_women_graph()
