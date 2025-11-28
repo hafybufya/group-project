@@ -13,26 +13,55 @@ import matplotlib.pyplot as plt
 
 
 csv_in_use = "Retirement_Age.csv"
-# colors for plots
+
+# Colours for plots
 colour_1 = "#2596be"
 colour_2 = "#ec9d41"
 
-#thiink about depth of hardocding. SHould i take out paths take out year to a diff name like how much shall i do.
-#fetch the data
+
+# ---------------------------------------------------------------------
+# FUNCTION: Read CSV data into Dataframe
+# ---------------------------------------------------------------------
 
 def read_retirement_data():
-    '''
-    reads Retirement_Age.csv file and parses the year column as a date and sets it as an index
-    '''
-    #GET RID OF HARDCODED PATH
+
+    """
+
+    Loads the csv dataset defined in 'csv_in_use'
+
+    Returns
+    -------
+
+    pandas Dataframe -> converts csv to df containing retirement data with year as the index
+
+    """
+    # Year set as index for line graph plots 
     retirement_df = pd.read_csv(csv_in_use, parse_dates=['Year'],  index_col='Year')
 
     return  retirement_df
 
+# Call for function to be used for graphs
 retirement_df =read_retirement_data()
 
+
+# ---------------------------------------------------------------------
+# FUNCTION: Get min and max value from CSV
+# ---------------------------------------------------------------------
+
 def min_max_index():
-    """getting min max of index"""
+
+    """
+
+    Loads the csv dataset defined in 'csv_in_use'
+
+    Returns
+    -------
+    min_value -> integer, earliest year in the csv
+    max_value -> integer, most recent year in the csv
+
+    """
+    
+    # Passed in csv_in_use again as retirement_df wouldn't work as Year is the index col
     df = pd.read_csv(csv_in_use)
     min_value = df['Year'].min()
     max_value = df['Year'].max()
@@ -40,37 +69,71 @@ def min_max_index():
     return min_value, max_value
 
 
+# ---------------------------------------------------------------------
+# Masks for OECD and UK
+# ---------------------------------------------------------------------
 
-
-#mask to get OECD data 
+# Mask to get OECD data 
 OECD_average = retirement_df[retirement_df['Entity'] == 'OECD average'].copy()
 
-#mask to get United Kingdom data
+# Mask to get United Kingdom data
 UK_average = retirement_df[retirement_df['Entity'] == 'United Kingdom'].copy()
 
 
+# ---------------------------------------------------------------------
+# FUNCTION: Plot OECD and UK women graph
+# ---------------------------------------------------------------------
 
-def plot_OEC_women_graph():
-#plotting both OECD women and UK same graph
+def plot_OECD_women_graph():
+
+    """
+
+    Plots both OECD women and UK women on the same graph
+
+
+    """
+    
     plot_retirement_women= OECD_average.plot(kind='line',y='Average effective age of retirement, women (OECD)', label='"Average effective age of retirement, women (OECD)"', color=colour_1, linestyle='-')
+    # ax = puts both lines on the same plot
     UK_average.plot(kind='line',y='Average effective age of retirement, women (OECD)', label="Average effective age of retirement, women (UK)" ,ax = plot_retirement_women, color=colour_2, linestyle='--')
     plot_retirement_women.set_title("Retirement Age Over Time - Women (1970-2018)")
     plt.show()
 
 
+# ---------------------------------------------------------------------
+# FUNCTION: Plot OECD and UK men graph
+# ---------------------------------------------------------------------
+
+
 def plot_OECD_men_graph():
-    #plotting both OECD women and UK same graph
+
+    """
+
+    Plots both OECD men and UK men on the same graph
+
+
+    """
+   
     plot_retirement_men= OECD_average.plot(kind='line',y='Average effective age of retirement, men (OECD)', label='Average effective age of retirement, men (OECD)', color=colour_1,  linestyle='-')
-    #ax = puts both lines on the same plot
+    # ax = puts both lines on the same plot
     UK_average.plot(kind='line',y='Average effective age of retirement, men (OECD)', label='Average effective age of retirement, men (UK)' ,ax = plot_retirement_men , color=colour_2, linestyle='--')
-    #unhardcode numbers
     plot_retirement_men.set_title("Retirement Age Over Time - Men (1970-2018)")
     plt.show()
 
 
-def plot_men_women_graph():
+# ---------------------------------------------------------------------
+# FUNCTION: Plot UK men and UK woman graph
+# ---------------------------------------------------------------------
 
-    #plotting both UK men and women on the graph
+def plot_UK_men_women_graph():
+
+    """
+
+    Plots both UK men and UK women on the same graph
+
+
+    """
+   
     plot_retirement_women= UK_average.plot(kind='line',y='Average effective age of retirement, women (OECD)', label='Average effective age of retirement, women (UK)', color=colour_1, linestyle='-')
     #ax = puts both lines on the same plot
     UK_average.plot(kind='line',y='Average effective age of retirement, men (OECD)', label="Average effective age of retirement, men (UK)" ,ax = plot_retirement_women, color=colour_2, linestyle='--')
@@ -88,5 +151,5 @@ if __name__ == "__main__":
     print(min_value)
     print(max_value)
 
-    #Calling UK men vs UK women comparison graph
-    plot_men_women_graph()
+    # Calling UK men vs UK women comparison graph
+    plot_UK_men_women_graph()
