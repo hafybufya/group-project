@@ -22,6 +22,19 @@ class my_unit_tests(unittest.TestCase):
     def test_csv_file_exists(self):
         self.assertTrue(os.path.isfile(csv_in_use))
 
+    # ---------------------------------------------------------------------
+    # TESTING: OECD and UK masks
+    # ---------------------------------------------------------------------
+
+    #Tests if only OECD data is found in OECD average mask
+    def test_OECD_mask(self):
+        self.assertTrue((OECD_average["Entity"] == "OECD average").all())
+
+    #Tests if only UK data is found in UK average mask
+    def test_UK_mask(self):
+        self.assertTrue((UK_average["Entity"] == "United Kingdom").all())
+
+
     # run the tests
 if __name__ == "__main__":
     unittest.main()
