@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # ---------------------------------------------------------------------
-# Defined CSV file name, prompts and values used in program
+# Defined CSV file name, axis names and values used in program
 #  -> make the code flexible if used dataset changed
 #  -> or to reuse the same function for a different file.
 # ---------------------------------------------------------------------
@@ -17,6 +17,10 @@ csv_in_use = "Retirement_Age.csv"
 # Colours for plots
 colour_1 = "#2596be"
 colour_2 = "#ec9d41"
+
+# Axises used in program
+y_axis_men = 'Average effective age of retirement, men (OECD)'
+y_axis_women = 'Average effective age of retirement, women (OECD)'
 
 
 # ---------------------------------------------------------------------
@@ -93,10 +97,10 @@ def plot_OECD_women_graph():
 
     """
     
-    plot_retirement_women= OECD_average.plot(kind='line',y='Average effective age of retirement, women (OECD)', label='"Average effective age of retirement, women (OECD)"', color=colour_1, linestyle='-')
+    plot_retirement_women= OECD_average.plot(kind='line',y=y_axis_women, label='"Average effective age of retirement, women (OECD)"', color=colour_1, linestyle='-')
     # ax = puts both lines on the same plot
-    UK_average.plot(kind='line',y='Average effective age of retirement, women (OECD)', label="Average effective age of retirement, women (UK)" ,ax = plot_retirement_women, color=colour_2, linestyle='--')
-    plot_retirement_women.set_title("Retirement Age Over Time - Women (1970-2018)")
+    UK_average.plot(kind='line',y=y_axis_women, label="Average effective age of retirement, women (UK)" ,ax = plot_retirement_women, color=colour_2, linestyle='--')
+    plot_retirement_women.set_title("Retirement Age Over Time - Women ({min_value}-{max_value})")
     plt.show()
 
 
@@ -114,10 +118,10 @@ def plot_OECD_men_graph():
 
     """
    
-    plot_retirement_men= OECD_average.plot(kind='line',y='Average effective age of retirement, men (OECD)', label='Average effective age of retirement, men (OECD)', color=colour_1,  linestyle='-')
+    plot_retirement_men= OECD_average.plot(kind='line',y= y_axis_men , label='Average effective age of retirement, men (OECD)', color=colour_1,  linestyle='-')
     # ax = puts both lines on the same plot
-    UK_average.plot(kind='line',y='Average effective age of retirement, men (OECD)', label='Average effective age of retirement, men (UK)' ,ax = plot_retirement_men , color=colour_2, linestyle='--')
-    plot_retirement_men.set_title("Retirement Age Over Time - Men (1970-2018)")
+    UK_average.plot(kind='line',y= y_axis_men , label='Average effective age of retirement, men (UK)' ,ax = plot_retirement_men , color=colour_2, linestyle='--')
+    plot_retirement_men.set_title("Retirement Age Over Time - Men ({min_value}-{max_value})")
     plt.show()
 
 
@@ -134,10 +138,10 @@ def plot_UK_men_women_graph():
 
     """
    
-    plot_retirement_women= UK_average.plot(kind='line',y='Average effective age of retirement, women (OECD)', label='Average effective age of retirement, women (UK)', color=colour_1, linestyle='-')
+    plot_retirement_women= UK_average.plot(kind='line',y=y_axis_women, label='Average effective age of retirement, women (UK)', color=colour_1, linestyle='-')
     #ax = puts both lines on the same plot
-    UK_average.plot(kind='line',y='Average effective age of retirement, men (OECD)', label="Average effective age of retirement, men (UK)" ,ax = plot_retirement_women, color=colour_2, linestyle='--')
-    plot_retirement_women.set_title("Retirement Age Over Time - Men vs Women (1970-2018)")
+    UK_average.plot(kind='line',y=y_axis_men, label="Average effective age of retirement, men (UK)" ,ax = plot_retirement_women, color=colour_2, linestyle='--')
+    plot_retirement_women.set_title(f"Retirement Age Over Time - Men vs Women ({min_value}-{max_value})")
     plt.show()
 
 
