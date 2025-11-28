@@ -131,7 +131,7 @@ def plot_OECD_men_graph():
 
 def plot_UK_men_women_graph():
 
-    """
+    """  
 
     Plots both UK men and UK women on the same graph
 
