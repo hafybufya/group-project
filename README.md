@@ -37,8 +37,8 @@ Both datasets were merged in Alteryx to produce a combined CSV used for the and 
 Python 3.10 or newer to run python files
 
 Python modules required: 
-* pandas – Reading and handling CSV files.
-* matplotlib – Plotting graphs.
+* pandas – reading and handling CSV files.
+* matplotlib – plotting graphs.
 
 You can install required packages with:
 
