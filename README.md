@@ -25,7 +25,7 @@ Comaparisons drawn between the retirement age for:
 ## 📊 Datasets
 
 The datasets used were obtained from Our World in Data:
-1. [Average effective retirement age](https://ourworldindata.org/grapher/average-effective-retirement-men)
+1. [Average effective retirement age men](https://ourworldindata.org/grapher/average-effective-retirement-men)
 2. [Average effective retirement age women](https://ourworldindata.org/grapher/average-effective-retirement-women)
 
 Both datasets were merged in Alteryx to produce a combined CSV used for the and visualisations.
