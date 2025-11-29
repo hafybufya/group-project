@@ -48,5 +48,6 @@ pip install pandas matplotlib
 
 
 ## 📄 License
-This project is open source and available under the MIT License.
+This project is open source and available under the [MIT License](https://github.com/hafybufya/group-project/blob/main/LICENSE).
+
 
